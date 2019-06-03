@@ -11,4 +11,6 @@
 	<string name="home_str">Home</string>
 	<string name="my_orders_str">My Orders</string>
     <string name="order_id">Order ID #86032</string>
+	<string name="messages">Messages</string>
+	<string name="order_details">Order Details</string>
 </resources>
