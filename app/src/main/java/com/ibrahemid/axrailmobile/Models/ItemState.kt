@@ -1,9 +1,9 @@
 package com.ibrahemid.axrailmobile.Models
 
 enum class ItemState(val value: String) {
-    PACKING("Packing"),
+    ALL("All"),
+    PAID("Paid"),
     SHIPPED("Shipped"),
     REFUNDED("Refunded"),
-    PAID("Paid"),
     DELIVERED("Delivered")
 }

@@ -1,6 +1,7 @@
 package com.ibrahemid.axrailmobile.Adapters
 
 import android.graphics.Color
+import android.os.Build
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -23,9 +24,15 @@ class FilterAdapter(val fillterOptions: ArrayList<FilterBtn>) : RecyclerView.Ada
         holder.itemView.filterItem.text = fillterOptions.get(position).title
         holder.itemView.filterItem.setOnClickListener {
             if (!fillterOptions[position].status) {
+                //activated
+//                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+//                    holder.itemView.filterItem.outlineSpotShadowColor = Color.BLUE
+//                    holder.itemView.filterItem.outlineSpotShadowColor = Color.RED
+//                }
                 holder.itemView.filterItem.setBackgroundResource(R.drawable.filter_btn_shape)
                 holder.itemView.filterItem.setTextColor(Color.WHITE)
-                fillterOptions[position].status = true
+                fillterOptions[position].status = true // live data
+
 
             } else {
                 holder.itemView.filterItem.setBackgroundResource(R.drawable.filter_btn_shape_clear)

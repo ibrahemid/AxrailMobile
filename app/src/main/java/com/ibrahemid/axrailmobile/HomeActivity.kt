@@ -41,7 +41,9 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
 
         //this line was commented to test the header
-       ordersRcView.layoutManager = LinearLayoutManager(this, RecyclerView.VERTICAL, false).apply { isSmoothScrollbarEnabled =true }
+       ordersRcView.layoutManager = LinearLayoutManager(this, RecyclerView.VERTICAL, false).apply {
+           this.isSmoothScrollbarEnabled =true
+       }
         val ordersList = ArrayList<Order>()
 
         val orderItemList = ArrayList<OrderItem>()

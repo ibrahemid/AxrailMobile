@@ -30,6 +30,7 @@ class OrdersAdapter (val orders: ArrayList<Order>) : RecyclerView.Adapter<Orders
         holder.itemView.order_id_tv.text=orders[position].orderId
         holder.itemView.item_list_rc.layoutManager = LinearLayoutManager(holder.itemView.context,RecyclerView.VERTICAL,false)
         holder.itemView.item_list_rc.setHasFixedSize(true)
+        holder.itemView.redDot.bringToFront()
    //     holder.itemView.item_list_rc.isNestedScrollingEnabled =false
 
         holder.itemView.item_list_rc.adapter=ItemListAdapter(arrayListOf(orders[position].itemsInOrder[0],orders[position].itemsInOrder[1]))

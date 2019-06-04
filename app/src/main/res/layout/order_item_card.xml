@@ -5,18 +5,17 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/gray_trans"
+        android:background="@color/white"
+        android:clipToPadding="false"
         android:id="@+id/order_item_card"
-
 >
 
     <TextView
             tools:text="@string/order_id"
-            android:fontFamily="@font/gibson_regular"
+            android:fontFamily="sans-serif-medium"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:id="@+id/order_id_tv"
-            android:textStyle="bold"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -38,14 +37,17 @@
             app:layout_constraintEnd_toEndOf="parent"
     >
     </androidx.recyclerview.widget.RecyclerView>
+
+
     <Button
             android:layout_width="0dp"
             android:layout_height="45dp"
             android:id="@+id/message_btn"
             app:layout_constraintEnd_toStartOf="@+id/order_details_btn"
-            android:textColor="#6677BC"
+            android:textColor="#4A6BF7"
             android:textAllCaps="false"
             android:elevation="7dp"
+            app:layout_collapseMode="parallax"
             android:translationZ="4dp"
             android:textSize="18sp"
             android:foreground="?android:attr/selectableItemBackground"
@@ -58,6 +60,13 @@
             android:layout_marginStart="28dp"
             android:layout_marginTop="8dp"
     />
+    <View
+              android:id="@+id/redDot"
+            android:layout_width="12dp" android:layout_height="12dp"
+            android:foreground="@drawable/button_circle"
+            app:layout_constraintTop_toTopOf="@+id/message_btn"
+            app:layout_constraintEnd_toEndOf="@+id/message_btn" app:layout_constraintStart_toEndOf="@+id/message_btn"
+            app:layout_constraintBottom_toTopOf="@+id/message_btn"/>
     <Button
             android:id="@+id/order_details_btn"
             android:layout_width="0dp"
@@ -71,7 +80,8 @@
             android:background="@drawable/order_btn_shape"
             android:layout_height="45dp"
             android:layout_marginStart="8dp"
-            app:layout_constraintStart_toEndOf="@+id/message_btn" app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/message_btn"
+            app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginEnd="28dp"
             app:layout_constraintTop_toTopOf="@+id/message_btn"
             app:layout_constraintBottom_toBottomOf="@+id/message_btn"/>
