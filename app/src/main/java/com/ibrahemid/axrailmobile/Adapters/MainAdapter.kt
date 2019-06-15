@@ -6,9 +6,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.ibrahemid.axrailmobile.Models.Order
 import com.ibrahemid.axrailmobile.databinding.OrderItemCardBinding
-import java.util.*
 
-class OrdersAdapter (val orders: List<Order>) : RecyclerView.Adapter<OrdersAdapter.ViewHolder>() {
+class MainAdapter (val orders: List<Order>) : RecyclerView.Adapter<MainAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val binding = OrderItemCardBinding.inflate(LayoutInflater.from(parent.context),parent,false)
