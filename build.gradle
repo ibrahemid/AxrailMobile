@@ -17,12 +17,20 @@ buildscript {
 }
 
 allprojects {
+
     repositories {
         google()
         jcenter()
         maven { url 'https://jitpack.io' }
 
 
+    }
+    configurations {
+        all {
+            resolutionStrategy {
+                force "android.arch.lifecycle:runtime:1.1.1"
+            }
+        }
     }
 }
 
