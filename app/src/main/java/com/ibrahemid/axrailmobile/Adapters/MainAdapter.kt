@@ -22,7 +22,7 @@ class MainAdapter (val orders: List<Order>) : RecyclerView.Adapter<MainAdapter.V
                 Toast.makeText(itemView.context,"All-> ${orders.size} Po-> $position",Toast.LENGTH_SHORT).show()
                 itemListRc.layoutManager = LinearLayoutManager(binding.root.context,RecyclerView.VERTICAL,false)
                 itemListRc.setHasFixedSize(true)
-                itemListRc.adapter=ItemListAdapter(arrayListOf(item.itemsInOrder[0],item.itemsInOrder[1]))
+                itemListRc.adapter=ItemListAdapter(item.itemsInOrder)
             }
         }
     }
