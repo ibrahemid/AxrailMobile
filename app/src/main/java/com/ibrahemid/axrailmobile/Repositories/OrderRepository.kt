@@ -1,45 +1,57 @@
 package com.ibrahemid.axrailmobile.Repositories
 
-import android.util.Range
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import com.ibrahemid.axrailmobile.Models.*
 import com.mooveit.library.Fakeit
-import java.util.*
-import kotlin.collections.ArrayList
-import kotlin.collections.RandomAccess
 
 object OrderRepository {
-
+    private val TAG: String?="OrderRepository"
     val dataSet = ArrayList<Order>()
-    val itemsInsideOrderList = ArrayList<OrderItem>()
     val data = MutableLiveData<List<Order>>()
     val dataFilter = MutableLiveData<List<OrderStatusBtn>>()
+    const val numberOFOrdersRandom: Int = 15
 
-    //public MutableLiveData<List<NicePlace>> getNicePlaces(){
     init {
         Fakeit.init()
-        setOrders(15)
-        data.value = dataSet
+        setOrders(numberOFOrdersRandom)
+        // data.value = dataSet
     }
 
-    fun filter(itemState: ItemState): MutableLiveData<List<Order>> {
+    fun changeData(itemState: List<OrderStatusBtn>): MutableLiveData<List<Order>> {
         val temp = ArrayList<Order>()
-        for (order in dataSet){
-            if (order.status.value==itemState.value){
-                temp.add(order)
+        for (item in itemState) {
+            if (item.isActive) { // gor thro the actives only
+                if (item.itemState == ItemState.ALL) {
+                    data.value = dataSet
+//                    setOrders(numberOFOrdersRandom) // return all data // FIXME: 6/18/2019  setiing the order to get all . nosens
+                    return data
+                }
+                else {
+                    for (order in dataSet) {
+                        if (item.itemState == order.status) { // this may happen many times
+                            temp.add(order)
+                            itemState[0].isActive = false   //setting all to InActive
+
+                        }
+                    }
+
+                }
             }
         }
-        data.postValue(temp)
-        return data // filtered data based on the orderStatus In each Entry
+        data.value = temp
+        return data
     }
-
     fun initFilter(): MutableLiveData<List<OrderStatusBtn>> {
+
         val ordersStatusList: ArrayList<OrderStatusBtn> = ArrayList()
         for (i in ItemState.values()) {
             ordersStatusList.add(OrderStatusBtn(i))
         }
+        ordersStatusList[0].isActive=true
         dataFilter.value = ordersStatusList
         return dataFilter
+
     }
 
     fun getFilterItems(): MutableLiveData<List<OrderStatusBtn>> {
@@ -47,21 +59,25 @@ object OrderRepository {
     }
 
     fun getOrders(): MutableLiveData<List<Order>> {
-        return data // not filter // testing first
+        return data // not changeData // testing first
     }
 
-    private fun setOrders(i_: Int) {
-        for (i in 1..i_) { // 15 total orders
+    private fun setOrders(numberOfItems: Int) {
+        for (i in 1..numberOfItems) { // 15 total orders
             dataSet.add(
                 Order(
                     store = "OnePlus",
-                    status = ItemState.values()[i % 5],
+                    status = ItemState.values()[(1 until ItemState.values().size).random()],
                     orderId = "Order ID #0982${(1..100).random()}",
                     itemsInOrder = getItemsInsideOrder((1..4).random())
                 )
             )
+            Log.d(TAG, "setOrders: ItemState Added is ${ItemState.values()[(1 until ItemState.values().size).random()]} " )
+
         }
+        data.value = dataSet
     }
+
     private fun getItemsInsideOrder(itemNumbers: Int): ArrayList<OrderItem> {
         val temp = ArrayList<OrderItem>()
         for (i in 1..itemNumbers) {

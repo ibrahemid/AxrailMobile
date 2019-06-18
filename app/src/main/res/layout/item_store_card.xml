@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+             xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools"
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:orientation="horizontal"
+             android:background="@color/white"
+             style="@style/default_margin"
+             tools:showIn="@layout/order_details_fragment"
+>
+    <ImageView android:layout_width="wrap_content" android:layout_height="match_parent"
+               android:src="@drawable/ic_xiaomi_logo"
+               android:layout_marginStart="12dp"
+               android:layout_gravity="start"
+
+    />
+    <TextView android:layout_width="wrap_content"
+              android:text="Xiaomi"
+              android:paddingStart="50dp"
+              android:paddingTop="8dp"
+              android:paddingBottom="8dp"
+              android:textSize="21sp"
+              android:layout_gravity="center_vertical|center|start"
+              android:layout_height="wrap_content"
+    />
+    <ImageView android:layout_width="wrap_content" android:layout_height="match_parent"
+               android:gravity="center"
+               app:srcCompat="@drawable/ic_right_arrow"
+               android:layout_gravity="center_vertical|right"
+    />
+</FrameLayout>
