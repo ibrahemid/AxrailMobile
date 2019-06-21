@@ -24,7 +24,7 @@ class FilterAdapter(val orderStatusLive: MutableLiveData<List<OrderStatusBtn>>) 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 
         print("item is bind at $position")
-        holder.itemView.filterItem.text = orderStatus.get(position).itemState.value
+        holder.itemView.filterItem.text = orderStatus.get(position).orderStatus.value
         setActiveBtnStyle(holder, orderStatus[position].isActive)
 
         holder.itemView.filterItem.setOnClickListener {

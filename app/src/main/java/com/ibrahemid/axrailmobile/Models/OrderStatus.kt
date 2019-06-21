@@ -1,10 +1,6 @@
 package com.ibrahemid.axrailmobile.Models
 
-import android.os.Parcelable
-import kotlinx.android.parcel.Parcelize
-
-@Parcelize
-enum class ItemState(val value: String) : Parcelable {
+enum class OrderStatus(val value: String) {
     ALL("All"),
     PAID("Paid"),
     SHIPPED("Shipped"),

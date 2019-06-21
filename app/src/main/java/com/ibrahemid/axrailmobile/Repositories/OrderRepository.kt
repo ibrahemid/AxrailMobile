@@ -22,14 +22,14 @@ object OrderRepository {
         val temp = ArrayList<Order>()
         for (item in itemState) {
             if (item.isActive) { // gor thro the actives only
-                if (item.itemState == ItemState.ALL) {
+                if (item.orderStatus == OrderStatus.ALL) {
                     data.value = dataSet
 //                    setOrders(numberOFOrdersRandom) // return all data // FIXME: 6/18/2019  setiing the order to get all . nosens
                     return data
                 }
                 else {
                     for (order in dataSet) {
-                        if (item.itemState == order.status) { // this may happen many times
+                        if (item.orderStatus == order.status) { // this may happen many times
                             temp.add(order)
                             itemState[0].isActive = false   //setting all to InActive
 
@@ -45,7 +45,7 @@ object OrderRepository {
     fun initFilter(): MutableLiveData<List<OrderStatusBtn>> {
 
         val ordersStatusList: ArrayList<OrderStatusBtn> = ArrayList()
-        for (i in ItemState.values()) {
+        for (i in OrderStatus.values()) {
             ordersStatusList.add(OrderStatusBtn(i))
         }
         ordersStatusList[0].isActive=true
@@ -67,12 +67,15 @@ object OrderRepository {
             dataSet.add(
                 Order(
                     store = "OnePlus",
-                    status = ItemState.values()[(1 until ItemState.values().size).random()],
+                    status = OrderStatus.values()[(1 until OrderStatus.values().size).random()],
                     orderId = "Order ID #0982${(1..100).random()}",
                     itemsInOrder = getItemsInsideOrder((1..4).random())
                 )
             )
-            Log.d(TAG, "setOrders: ItemState Added is ${ItemState.values()[(1 until ItemState.values().size).random()]} " )
+            Log.d(
+                TAG,
+                "setOrders: OrderStatus Added is ${OrderStatus.values()[(1 until OrderStatus.values().size).random()]} "
+            )
 
         }
         data.value = dataSet
@@ -91,7 +94,7 @@ object OrderRepository {
                     ),
                     quantity = (0..4).random(),//
                     totalPrice = (160..900).random(),
-                    state = ItemState.values()[(0..4).random()]
+                    state = DeliveryStatus.values()[(0..3).random()]
                 )
             )
         }
