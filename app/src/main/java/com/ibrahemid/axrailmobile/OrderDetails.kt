@@ -1,7 +1,6 @@
 package com.ibrahemid.axrailmobile
 
 import android.content.ContentValues.TAG
-import android.graphics.Color
 import android.graphics.PorterDuff
 import android.graphics.drawable.GradientDrawable
 import android.os.Bundle
@@ -14,8 +13,10 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.ibrahemid.axrailmobile.Adapters.ItemListAdapter
 import com.ibrahemid.axrailmobile.Models.Order
+import kotlinx.android.synthetic.main.item_store_card.*
 import kotlinx.android.synthetic.main.order_details_fragment.*
 import kotlinx.android.synthetic.main.status_bar.*
+import kotlinx.android.synthetic.main.toolbar_fragment.*
 
 
 class OrderDetails : Fragment() {
@@ -36,6 +37,7 @@ class OrderDetails : Fragment() {
     ): View? {
         return inflater.inflate(R.layout.order_details_fragment, container, false)
     }
+
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         val item = arguments?.getParcelable<Order>(ITEMS)
@@ -45,137 +47,59 @@ class OrderDetails : Fragment() {
         item_list_recycler.layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
         item_list_recycler.setHasFixedSize(true)
         if (item != null) {
-            setStausStyle(item.itemsInOrder[0].state.ordinal)
-            item_list_recycler.adapter = ItemListAdapter(item.itemsInOrder)
+            initView(item)
+        }
+        view_product_btn.setOnClickListener {
+            setStyleToStatusBar(3)
         }
         back_btn.setOnClickListener {
             activity?.onBackPressed()
         }
-        // test area
-        val colors = intArrayOf(
-            Color.RED,
-            Color.BLUE
+    }
+
+    private fun initView(item: Order) {
+        setStyleToStatusBar(item.itemsInOrder[0].state.ordinal)
+        item_list_recycler.adapter = ItemListAdapter(item.itemsInOrder)
+        store_name_card.text = item.store
+        order_total_price.text = String.format("USD ${item.priceSubtotal + item.shippingPrice}")
+        shipping_price.text = String.format("USD ${item.shippingPrice}")
+        merchandise_price.text = String.format("USD ${item.priceSubtotal}")
+        store_logo.setImageResource(item.storeLogo)
+    }
+
+    private fun setStyleToStatusBar(position: Int) {
+        setStyleForUi(
+            position,
+            listOf(step_indicator1, step_indicator2, step_indicator3, step_indicator4),
+            listOf(null, step_line1, step_line2, step_line3),
+            listOf(R.color.step_state1, R.color.step_state2, R.color.step_state3, R.color.step_state4),
+            listOf(null, R.color.step_state1, R.color.step_state2, R.color.step_state3)
         )
-        val gd = GradientDrawable()
-        gd.gradientType = GradientDrawable.LINEAR_GRADIENT
-        gd.colors = colors
-        gd.gradientRadius = 180F
-
-        back_btn.background = gd
-
-
     }
 
-    private fun setStausStyle(position: Int) {
-        when (position) {
-            0 -> {
-                //position1
-                setStausStyle_(step_indicator1, null, R.color.step_state1, null)
-            }
-            1 -> {
-                //position2
-                setStausStyle_(step_indicator1, null, R.color.step_state1, null)
-                setStausStyle_(step_indicator2, step_line1, R.color.step_state2, R.color.step_state1)
-            }
-            2 -> {
-                //        position3
-                setStausStyle_(step_indicator1, null, R.color.step_state1, null)
-                setStausStyle_(
-                    step_indicator2,
-                    step_line1,
-                    color = R.color.step_state2,
-                    colorStart = R.color.step_state1
-                )
-                setStausStyle_(
-                    step_indicator3,
-                    step_line2,
-                    color = R.color.step_state3,
-                    colorStart = R.color.step_state2
-                )
-
-            }
-            3 -> {
-                //        position4
-                setStausStyle_(step_indicator1, null, R.color.step_state1, null)
-                setStausStyle_(
-                    step_indicator2,
-                    step_line1,
-                    color = R.color.step_state2,
-                    colorStart = R.color.step_state1
-                )
-                setStausStyle_(
-                    step_indicator3,
-                    step_line2,
-                    color = R.color.step_state3,
-                    colorStart = R.color.step_state2
-                )
-                setStausStyle_(
-                    step_indicator4,
-                    step_line3,
-                    color = R.color.step_state4,
-                    colorStart = R.color.step_state3
-                )
-
-            }
-        }
-    }
-
-    private fun setStausStyle_(
-        stepIndicator: View,
-        stepLine: View?,
-        color: Int,
-        colorStart: Int?
+    private fun setStyleForUi(
+        mode: Int,
+        stepIndicators: List<View>,
+        stepLines: List<View?>,
+        colors: List<Int>,
+        colorStarts: List<Int?>
     ) {
-
-        stepIndicator.foreground = resources.getDrawable(R.drawable.ic_check_true)
-        stepIndicator.foreground.setColorFilter(resources.getColor(color), PorterDuff.Mode.SRC_IN)
-        if (stepLine != null && colorStart != null) {
-            val colors = intArrayOf(
-                Color.RED,
-                Color.BLUE
-            )
-
-            val gd = GradientDrawable()
-            gd.gradientType = GradientDrawable.LINEAR_GRADIENT
-            gd.colors = colors
-            gd.gradientRadius = 180F
-
-            stepLine.background = gd
-
-//                gd.setGradientType(GradientDrawable.RADIAL_GRADIENT);
+        (0..mode).forEach { i ->
+            stepIndicators[i].foreground = resources.getDrawable(R.drawable.ic_check_true)
+            stepIndicators[i].foreground.setColorFilter(resources.getColor(colors[i]), PorterDuff.Mode.SRC_IN)
+            if (stepLines[i] != null && colorStarts[i] != null) {
+                GradientDrawable().let {
+                    it.orientation = GradientDrawable.Orientation.LEFT_RIGHT
+                    it.colors = intArrayOf(
+                        resources.getColor(colorStarts[i]!!),
+                        resources.getColor(colors[i])
+                    )
+                    stepLines[i]!!.background = it
+                }
+            }
         }
-
     }
-
-
 }
-
-//
-//CIRCLE		 step_indicator$number
-//EPMTY
-//android:foreground="@drawable/step_background_empty"
-//android:foregroundTint="@color/empty_step_gray"
-//
-//
-//COLOR
-//android:foreground="@drawable/ic_check_true"
-//android:foregroundTint="@color/step_state$number"
-//
-//
-//
-//LINE		 step_line$number
-//EPMTY
-//android:background="@color/empty_step_gray"
-//
-//
-//COLOR
-//android:background="@drawable/step_one_gradient"
-//
-//
-//
-
-
-
 
 
 

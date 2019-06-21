@@ -1,15 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout
+<layout tools:showIn="@layout/order_details_fragment"
+
         xmlns:tools="http://schemas.android.com/tools" xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto">
     <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+
     >
 
         <View
                 android:id="@+id/step_indicator1"
-                android:layout_width="16dp" android:layout_height="16dp"
+                android:layout_width="18dp" android:layout_height="18dp"
                 android:foreground="@drawable/step_background_empty"
                 android:foregroundTint="@color/empty_step_gray"
                 app:layout_constraintTop_toTopOf="parent"
@@ -21,7 +23,7 @@
         />
         <View
                 android:id="@+id/step_indicator2"
-                android:layout_width="16dp" android:layout_height="16dp"
+                android:layout_width="18dp" android:layout_height="18dp"
                 android:foreground="@drawable/step_background_empty"
                 android:foregroundTint="@color/empty_step_gray"
                 app:layout_constraintTop_toTopOf="@+id/step_line1"
@@ -33,7 +35,7 @@
 
         <View
                 android:id="@+id/step_indicator3"
-                android:layout_width="16dp" android:layout_height="16dp"
+                android:layout_width="18dp" android:layout_height="18dp"
                 android:foreground="@drawable/step_background_empty"
                 android:foregroundTint="@color/empty_step_gray"
                 app:layout_constraintTop_toTopOf="@+id/step_line2"
@@ -45,7 +47,7 @@
 
         <View
                 android:id="@+id/step_indicator4"
-                android:layout_width="16dp" android:layout_height="16dp"
+                android:layout_width="18dp" android:layout_height="18dp"
                 android:foreground="@drawable/step_background_empty"
                 android:foregroundTint="@color/empty_step_gray"
                 app:layout_constraintTop_toTopOf="@+id/step_line3"

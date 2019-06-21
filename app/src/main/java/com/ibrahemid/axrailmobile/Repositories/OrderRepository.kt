@@ -3,9 +3,11 @@ package com.ibrahemid.axrailmobile.Repositories
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import com.ibrahemid.axrailmobile.Models.*
+import com.ibrahemid.axrailmobile.R
 import com.mooveit.library.Fakeit
 
 object OrderRepository {
+    // FIXME: 6/21/2019 loop thro images
     private val TAG: String?="OrderRepository"
     val dataSet = ArrayList<Order>()
     val data = MutableLiveData<List<Order>>()
@@ -66,10 +68,11 @@ object OrderRepository {
         for (i in 1..numberOfItems) { // 15 total orders
             dataSet.add(
                 Order(
-                    store = "OnePlus",
+                    store = listOf("OnePlus", "Xiaomi", "Huawei").random(),
                     status = OrderStatus.values()[(1 until OrderStatus.values().size).random()],
                     orderId = "Order ID #0982${(1..100).random()}",
-                    itemsInOrder = getItemsInsideOrder((1..4).random())
+                    itemsInOrder = getItemsInsideOrder((1..4).random()),
+                    shippingPrice = (5..20).random()
                 )
             )
             Log.d(
@@ -89,11 +92,10 @@ object OrderRepository {
                     item = Item(
                         name = Fakeit.app().name(),
                         color = Fakeit.artist().name(),
-                        price = 213,
-                        ProductPhoto = Fakeit.bank().name()
+                        price = (100..500).random(),
+                        ProductPhoto = listOf(R.drawable.img, R.drawable.img2, R.drawable.img3).random()
                     ),
-                    quantity = (0..4).random(),//
-                    totalPrice = (160..900).random(),
+                    quantity = (1..4).random(),
                     state = DeliveryStatus.values()[(0..3).random()]
                 )
             )

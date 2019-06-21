@@ -7,7 +7,7 @@
 	<string name="nav_header_subtitle">android.studio@android.com</string>
 	<string name="nav_header_desc">Navigation header</string>
 	<string name="action_settings">Settings</string>
-	<string name="hello_user">Hi John !</string>
+	<string name="hello_user">Welcome Back</string>
 	<string name="home_str">Home</string>
 	<string name="my_orders_str">My Orders</string>
     <string name="order_id">Order ID #86032</string>

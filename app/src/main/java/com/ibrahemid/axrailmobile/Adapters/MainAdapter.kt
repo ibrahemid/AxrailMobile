@@ -44,9 +44,7 @@ class MainAdapter(var orders: List<Order>) : RecyclerView.Adapter<MainAdapter.Vi
                         android.R.anim.slide_out_right,
                         android.R.anim.slide_in_left,
                         android.R.anim.slide_out_right
-
                     )
-
                     transaction.replace(R.id.coordinatorLayout, OrderDetails.newInstance(item)).addToBackStack(null)
                         .commit()
                 }

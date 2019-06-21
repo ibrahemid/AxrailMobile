@@ -2,7 +2,7 @@
 <FrameLayout xmlns:app="http://schemas.android.com/apk/res-auto"
              xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools"
              android:layout_width="match_parent"
-             android:layout_height="42dp"
+             android:layout_height="48dp"
              android:orientation="horizontal"
              android:background="@drawable/order_card_white"
              style="@style/default_margin"
@@ -11,13 +11,16 @@
              android:outlineSpotShadowColor="@color/colorPrimary"
              tools:showIn="@layout/order_details_fragment"
 >
-    <ImageView android:layout_width="18dp" android:layout_height="18dp"
-               android:src="@drawable/ic_xiaomi_logo"
+    <ImageView
+            android:id="@+id/store_logo"
+            android:layout_width="18dp" android:layout_height="18dp"
+            app:srcCompat="@drawable/ic_xiaomi_logo"
                android:layout_marginStart="12dp"
                android:layout_gravity="start|center_vertical"
     />
     <TextView android:layout_width="wrap_content"
               android:text="Xiaomi"
+
               android:paddingStart="42dp"
               android:paddingTop="8dp"
               android:textSize="19sp"
@@ -25,10 +28,13 @@
               android:paddingBottom="8dp"
               android:layout_gravity="center_vertical|center|start"
               android:layout_height="wrap_content"
-    />
+              android:id="@+id/store_name_card"/>
     <ImageView android:layout_width="18dp" android:layout_height="18dp"
                app:srcCompat="@drawable/ic_right_arrow"
                android:layout_gravity="center_vertical|right"
-               android:layout_marginEnd="16dp"
+               android:clickable="true"
+               android:layout_margin="16dp"
+               android:focusable="true"
+               android:background="?android:selectableItemBackgroundBorderless"
     />
 </FrameLayout>

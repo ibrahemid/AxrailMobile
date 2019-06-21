@@ -18,6 +18,7 @@ import com.ibrahemid.axrailmobile.Models.Order
 import com.ibrahemid.axrailmobile.Models.OrderStatusBtn
 import com.ibrahemid.axrailmobile.ViewModel.MainViewModel
 import kotlinx.android.synthetic.main.activity_home.*
+import kotlinx.android.synthetic.main.home_activity_content.*
 
 
 class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
