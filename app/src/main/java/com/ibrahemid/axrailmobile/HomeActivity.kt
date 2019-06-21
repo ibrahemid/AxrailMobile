@@ -14,7 +14,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.navigation.NavigationView
 import com.ibrahemid.axrailmobile.Adapters.FilterAdapter
 import com.ibrahemid.axrailmobile.Adapters.MainAdapter
-import com.ibrahemid.axrailmobile.Models.ItemState
 import com.ibrahemid.axrailmobile.Models.Order
 import com.ibrahemid.axrailmobile.Models.OrderStatusBtn
 import com.ibrahemid.axrailmobile.ViewModel.MainViewModel
@@ -24,6 +23,8 @@ import kotlinx.android.synthetic.main.activity_home.*
 class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
     // FIXME: 6/19/2019  extract the layout to another files In the Xml
+    // FIXME: 6/20/2019  check style color string and un
+
 
     lateinit var viewModel: MainViewModel
     lateinit var mAdapter: MainAdapter
@@ -33,10 +34,6 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         viewModel = ViewModelProviders.of(this).get(MainViewModel::class.java)
         setContentView(R.layout.activity_home)
         setSupportActionBar(toolbar)
-        val ordersStatusList: ArrayList<OrderStatusBtn> = ArrayList()
-        for (i in ItemState.values()) {
-            ordersStatusList.add(OrderStatusBtn(i)) //toDo Faker Here
-        }
 
         observeViewModel(viewModel)
 

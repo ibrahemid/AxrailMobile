@@ -14,9 +14,7 @@ class ItemListAdapter  (val itemsInOrder: ArrayList<OrderItem>) : RecyclerView.A
         val view:View = LayoutInflater.from(parent.context).inflate(R.layout.single_item_card,parent,false)
         return ViewHolder(view)
     }
-
     override fun getItemCount()=itemsInOrder.size
-
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.itemView.item_name_tv.text=itemsInOrder[position].item.name
         holder.itemView.item_quantity_tv.text= String.format("x "+itemsInOrder[position].quantity)
@@ -24,7 +22,6 @@ class ItemListAdapter  (val itemsInOrder: ArrayList<OrderItem>) : RecyclerView.A
         holder.itemView.item_color_tv.text=itemsInOrder[position].item.color
         holder.itemView.item_state_tv.text=itemsInOrder[position].state.value
         holder.itemView.item_img.setImageResource(R.drawable.img)
-
     }
     class ViewHolder(itemView: View):RecyclerView.ViewHolder(itemView)
 

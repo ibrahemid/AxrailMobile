@@ -30,14 +30,14 @@
             android:layout_marginBottom="24dp"/>
     <TextView
             tools:text="Xiaomi Mi M ix 3"
-            android:textColor="@android:color/black"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/item_name_tv"
             app:layout_constraintTop_toTopOf="@+id/item_img"
             app:layout_constraintStart_toEndOf="@+id/item_img"
             android:layout_marginStart="32dp"
-            android:textStyle="bold"/>
+            style="@style/product_name"
+    />
     <TextView
             android:text="TextView"
             tools:text="USD 160"

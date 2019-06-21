@@ -48,7 +48,6 @@ class FilterAdapter(val orderStatusLive: MutableLiveData<List<OrderStatusBtn>>) 
 
         }
     }
-
     private fun setActiveBtnStyle(
         holder: ViewHolder,
         IsColored: Boolean
