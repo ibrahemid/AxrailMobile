@@ -2,25 +2,16 @@
 <resources>
     <color name="colorPrimary">#4E6EF6</color>
     <color name="colorPrimaryDark">#FFFFFF</color>
-    <color name="colorAccent">#D81B60</color>
 
     <!--my-->
     <color name="white">#ffff</color>
-    <color name="gray">#78849E</color>
-    <color name="grayTwo">#898989</color>
-    <color name="empty_step_gray">#C1C2C9</color>
-    <color name="grayThree">#CED3E5</color>
-    <color name="red">#970000</color>
-    <color name="gray_4">#302D2D</color>
     <color name="gray_trans">#A6FAFAFA</color>
+    <color name="empty_step_gray">#C1C2C9</color>
+    <color name="gray_light">#CED3E5</color>
     <color name="gray_trans2">#EDF0F2</color>
     <color name="step_state1">#5D82F1</color>
     <color name="step_state2">#60B1D1</color>
     <color name="step_state3">#82C6E2</color>
     <color name="step_state4">#9BE3CF</color>
-    <color name="step_state6">#00FF5C</color>
-
-
-    <!--trans 20-->
 
 </resources>

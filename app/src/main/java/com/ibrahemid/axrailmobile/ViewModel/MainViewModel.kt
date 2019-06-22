@@ -12,35 +12,30 @@ class MainViewModel : ViewModel() {
     val orders: MutableLiveData<List<Order>>by lazy {
         MutableLiveData<List<Order>>()
     }
-
-    init {
-        loadOrders_()
-    }
-
     val filterBtnsList: MutableLiveData<List<OrderStatusBtn>>by lazy {
         MutableLiveData<List<OrderStatusBtn>>().also {
             OrderRepository.initFilter()
         }
     }
 
-
-    // FIXME: 6/18/2019  use the getters and setter from kotlin - delete redundant  code
     init {
-        OrderRepository.initFilter()
-        filterBtnsList.value = OrderRepository.getFilterItems().value
+        loadOrders_()
     }
 
-    fun getOrders_(): LiveData<List<Order>> {
-        //print("Size is MainViewModel ------ ${orders.value?.size} --------")
+    fun getOrders(): LiveData<List<Order>> {
         return orders
     }
 
-    fun getFillteritems(): LiveData<List<OrderStatusBtn>> {
+    fun getFilterItems(): LiveData<List<OrderStatusBtn>> {
         return filterBtnsList
     }
 
     private fun loadOrders_() {
         orders.value = OrderRepository.getOrders().value
+        OrderRepository.initFilter().let {
+            filterBtnsList.value = it.value
+        }
+
     }
 
     fun changeData(itemState: List<OrderStatusBtn>) {

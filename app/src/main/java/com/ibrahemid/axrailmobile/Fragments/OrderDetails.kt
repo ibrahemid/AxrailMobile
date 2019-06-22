@@ -1,4 +1,4 @@
-package com.ibrahemid.axrailmobile
+package com.ibrahemid.axrailmobile.Fragments
 
 import android.content.ContentValues.TAG
 import android.graphics.PorterDuff
@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.ibrahemid.axrailmobile.Adapters.ItemListAdapter
 import com.ibrahemid.axrailmobile.Models.Order
+import com.ibrahemid.axrailmobile.R
 import kotlinx.android.synthetic.main.item_store_card.*
 import kotlinx.android.synthetic.main.order_details_fragment.*
 import kotlinx.android.synthetic.main.status_bar.*
@@ -20,7 +21,6 @@ import kotlinx.android.synthetic.main.toolbar_fragment.*
 
 
 class OrderDetails : Fragment() {
-    // FIXME: 6/19/2019 replace android text with tools
     companion object {
         const val ITEMS = "items"
         fun newInstance(data: Order): OrderDetails {
@@ -72,8 +72,18 @@ class OrderDetails : Fragment() {
             position,
             listOf(step_indicator1, step_indicator2, step_indicator3, step_indicator4),
             listOf(null, step_line1, step_line2, step_line3),
-            listOf(R.color.step_state1, R.color.step_state2, R.color.step_state3, R.color.step_state4),
-            listOf(null, R.color.step_state1, R.color.step_state2, R.color.step_state3)
+            listOf(
+                R.color.step_state1,
+                R.color.step_state2,
+                R.color.step_state3,
+                R.color.step_state4
+            ),
+            listOf(
+                null,
+                R.color.step_state1,
+                R.color.step_state2,
+                R.color.step_state3
+            )
         )
     }
 

@@ -9,7 +9,7 @@
             android:textAllCaps="false"
             android:focusable="true"
             android:clickable="true"
-            android:textColor="@color/grayThree"
+            android:textColor="@color/gray_light"
             android:background="@drawable/filter_btn_shape_clear"
             android:stateListAnimator="@null"
             android:fontFamily="sans-serif-medium"

@@ -7,21 +7,22 @@
              android:background="@drawable/order_card_white"
              style="@style/default_margin"
              android:translationZ="20dp"
+             tools:ignore="ContentDescription"
              android:outlineAmbientShadowColor="@color/colorPrimary"
              android:outlineSpotShadowColor="@color/colorPrimary"
              tools:showIn="@layout/order_details_fragment"
->
+             tools:targetApi="p">
     <ImageView
             android:id="@+id/store_logo"
             android:layout_width="18dp" android:layout_height="18dp"
             app:srcCompat="@drawable/ic_xiaomi_logo"
                android:layout_marginStart="12dp"
                android:layout_gravity="start|center_vertical"
-    />
+            />
     <TextView android:layout_width="wrap_content"
-              android:text="Xiaomi"
-
+              android:text="@string/xiaomi"
               android:paddingStart="42dp"
+              android:paddingEnd="0dp"
               android:paddingTop="8dp"
               android:textSize="19sp"
               style="@style/product_name"
@@ -31,7 +32,7 @@
               android:id="@+id/store_name_card"/>
     <ImageView android:layout_width="18dp" android:layout_height="18dp"
                app:srcCompat="@drawable/ic_right_arrow"
-               android:layout_gravity="center_vertical|right"
+               android:layout_gravity="center_vertical|end"
                android:clickable="true"
                android:layout_margin="16dp"
                android:focusable="true"

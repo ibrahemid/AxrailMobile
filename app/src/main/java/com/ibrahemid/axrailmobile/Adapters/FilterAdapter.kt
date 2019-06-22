@@ -29,7 +29,6 @@ class FilterAdapter(val orderStatusLive: MutableLiveData<List<OrderStatusBtn>>) 
 
         holder.itemView.filterItem.setOnClickListener {
 
-            //             on Click listener
             if (orderStatus[position].isActive.not()) { // Clicked and was unActive
                 setActiveBtnStyle(holder, true).also {
                     orderStatus[position].isActive = true
@@ -57,7 +56,7 @@ class FilterAdapter(val orderStatusLive: MutableLiveData<List<OrderStatusBtn>>) 
             holder.itemView.filterItem.setTextColor(Color.WHITE)
         } else { // not colored
             holder.itemView.filterItem.setBackgroundResource(R.drawable.filter_btn_shape_clear)
-            holder.itemView.filterItem.setTextColor(holder.itemView.resources.getColor(R.color.grayThree))// FIXME: 6/17/2019 Color
+            holder.itemView.filterItem.setTextColor(holder.itemView.resources.getColor(R.color.gray_light))
         }
 
     }

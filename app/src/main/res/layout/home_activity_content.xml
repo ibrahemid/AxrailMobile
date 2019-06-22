@@ -5,7 +5,7 @@
         xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".HomeActivity"
+        tools:context=".Activities.HomeActivity"
         android:fitsSystemWindows="true"
         android:id="@+id/coordinatorLayout"
         tools:showIn="@layout/activity_home">
@@ -36,7 +36,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="?attr/actionBarSize"
                     app:title="@string/my_orders_str"
-                    app:popupTheme="@style/AppTheme.PopupOverlay"
+                    app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
                     app:titleTextColor="@android:color/black"
                     app:layout_collapseMode="pin"
                     app:titleTextAppearance="@style/TextAppearance.AppCompat.Widget.ActionBar.Title"
@@ -46,7 +46,7 @@
     </com.google.android.material.appbar.AppBarLayout>
 
     <LinearLayout
-            tools:context=".HomeActivity"
+            tools:context=".Activities.HomeActivity"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@color/white"
@@ -65,6 +65,16 @@
                 android:paddingStart="@dimen/start_padding"
                 android:background="@color/white"
                 android:orientation="horizontal"
+        />
+        <TextView android:layout_width="wrap_content"
+                  android:text="@string/error_msg"
+                  android:id="@+id/no_items_indicator"
+                  android:textSize="34sp"
+                  android:layout_margin="8dp"
+                  android:visibility="gone"
+                  android:textColor="@color/gray_light"
+                  android:fontFamily="sans-serif-light"
+                  android:layout_height="wrap_content"
         />
         <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/ordersRcView"

@@ -7,17 +7,15 @@ import com.ibrahemid.axrailmobile.R
 import com.mooveit.library.Fakeit
 
 object OrderRepository {
-    // FIXME: 6/21/2019 loop thro images
     private val TAG: String?="OrderRepository"
     val dataSet = ArrayList<Order>()
     val data = MutableLiveData<List<Order>>()
     val dataFilter = MutableLiveData<List<OrderStatusBtn>>()
-    const val numberOFOrdersRandom: Int = 15
+    const val numberOFOrdersRandom: Int = 20
 
     init {
         Fakeit.init()
         setOrders(numberOFOrdersRandom)
-        // data.value = dataSet
     }
 
     fun changeData(itemState: List<OrderStatusBtn>): MutableLiveData<List<Order>> {
@@ -26,7 +24,6 @@ object OrderRepository {
             if (item.isActive) { // gor thro the actives only
                 if (item.orderStatus == OrderStatus.ALL) {
                     data.value = dataSet
-//                    setOrders(numberOFOrdersRandom) // return all data // FIXME: 6/18/2019  setiing the order to get all . nosens
                     return data
                 }
                 else {
@@ -79,11 +76,9 @@ object OrderRepository {
                 TAG,
                 "setOrders: OrderStatus Added is ${OrderStatus.values()[(1 until OrderStatus.values().size).random()]} "
             )
-
         }
         data.value = dataSet
     }
-
     private fun getItemsInsideOrder(itemNumbers: Int): ArrayList<OrderItem> {
         val temp = ArrayList<OrderItem>()
         for (i in 1..itemNumbers) {

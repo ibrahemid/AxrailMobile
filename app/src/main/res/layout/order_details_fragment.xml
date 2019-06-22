@@ -80,7 +80,6 @@
                             android:layout_marginStart="24dp"/>
                     <include
                             layout="@layout/status_bar"
-                            android:background="@color/red"
                             android:id="@+id/stateProgressBar"
                             app:layout_constraintTop_toBottomOf="@+id/delivery_status" android:layout_height="22dp"
                             android:layout_width="match_parent"

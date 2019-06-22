@@ -6,8 +6,8 @@ import kotlinx.android.parcel.Parcelize
 
 @Parcelize
 data class Order(
-    val orderId:      String,
-    val store : String,
+    val orderId: String,
+    val store: String,
     val storeLogo: Int = when (store) {
         "OnePlus" -> R.drawable.ic_oneplus_icon
         "Xiaomi" -> R.drawable.ic_xiaomi_logo

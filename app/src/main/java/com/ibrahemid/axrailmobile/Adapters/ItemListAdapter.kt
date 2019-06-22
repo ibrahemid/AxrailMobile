@@ -9,7 +9,6 @@ import com.ibrahemid.axrailmobile.R
 import kotlinx.android.synthetic.main.single_item_card.view.*
 
 class ItemListAdapter  (val itemsInOrder: ArrayList<OrderItem>) : RecyclerView.Adapter<ItemListAdapter.ViewHolder>()  {
-    // FIXME: 6/22/2019  change adapter style
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view:View = LayoutInflater.from(parent.context).inflate(R.layout.single_item_card,parent,false)
         return ViewHolder(view)

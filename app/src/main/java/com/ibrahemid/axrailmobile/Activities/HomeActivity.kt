@@ -1,8 +1,9 @@
-package com.ibrahemid.axrailmobile
+package com.ibrahemid.axrailmobile.Activities
 
 import android.os.Bundle
 import android.util.Log
 import android.view.MenuItem
+import android.view.View
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
@@ -16,15 +17,13 @@ import com.ibrahemid.axrailmobile.Adapters.FilterAdapter
 import com.ibrahemid.axrailmobile.Adapters.MainAdapter
 import com.ibrahemid.axrailmobile.Models.Order
 import com.ibrahemid.axrailmobile.Models.OrderStatusBtn
+import com.ibrahemid.axrailmobile.R
 import com.ibrahemid.axrailmobile.ViewModel.MainViewModel
 import kotlinx.android.synthetic.main.activity_home.*
 import kotlinx.android.synthetic.main.home_activity_content.*
 
 
 class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
-
-    // FIXME: 6/19/2019  extract the layout to another files In the Xml
-    // FIXME: 6/20/2019  check style color string and un
 
 
     lateinit var viewModel: MainViewModel
@@ -40,7 +39,6 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         initAdapter()
 
-
         navConf()
 
     }
@@ -51,8 +49,9 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             Observer<List<Order>> {
                 if (it != null) {
                     Log.d(" Order Debug ", "${viewModel.orders.value?.size}")
-                    Log.d(" Order GetOrder ", "${viewModel.getOrders_().value?.size}")
-                    mAdapter.setNewData(viewModel.getOrders_().value.orEmpty()).let {
+                    Log.d(" Order GetOrder ", "${viewModel.getOrders().value?.size}")
+                    mAdapter.setNewData(viewModel.getOrders().value.orEmpty()).let {
+
                         ordersRcView.adapter?.notifyDataSetChanged()
                         ordersRcView.scheduleLayoutAnimation()
                     }
@@ -61,7 +60,14 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         )
         viewModel.filterBtnsList.observe(this, Observer {
             if (it != null) {
-                viewModel.changeData(it)
+                viewModel.changeData(it).let {
+                    if (viewModel.orders.value?.size == 0) {
+                        no_items_indicator.visibility = View.VISIBLE
+                    } else {
+                        no_items_indicator.visibility = View.GONE
+                    }
+                }
+
                 Log.d(" Filter Debug ", "${viewModel.orders.value?.size}")
 
             }
@@ -79,7 +85,7 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         filterRcView.setHasFixedSize(true)
         ordersRcView.setHasFixedSize(true)
         filterRcView.adapter =
-            FilterAdapter(viewModel.getFillteritems() as MutableLiveData<List<OrderStatusBtn>>) // FIXME: 6/17/2019
+            FilterAdapter(viewModel.getFilterItems() as MutableLiveData<List<OrderStatusBtn>>)
         ordersRcView.adapter = mAdapter
     }
 
@@ -100,7 +106,9 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     private fun navConf() {
         val toggle = ActionBarDrawerToggle(
-            this, drawer_layout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close
+            this, drawer_layout, toolbar,
+            R.string.navigation_drawer_open,
+            R.string.navigation_drawer_close
         )
         drawer_layout.addDrawerListener(toggle)
         toggle.syncState()
